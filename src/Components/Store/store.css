@@ -1,0 +1,9 @@
+.card {
+    width: fit-content;
+}
+.store {
+
+    .filter {
+        width: 10rem;
+    }
+}
