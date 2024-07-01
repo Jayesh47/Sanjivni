@@ -2,8 +2,10 @@
     width: fit-content;
 }
 .store {
-
     .filter {
         width: 10rem;
     }
+}
+.prod-desc {
+    text-align: justify;
 }

@@ -1,46 +1,40 @@
 import './App.css';
 import Header from './Components/Home/header';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import HomePage from './Components/Home/homepage';
 import About from './Components/Home/about';
 import Login from './Components/Home/Auth/login';
 import Footer from './Components/Home/footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Store from './Components/Store/store';
 import Signin from './Components/Home/Auth/signin';
 import Product_View from './Components/Store/product';
 import Logout from './Components/Home/Auth/logout';
+import Profile from './Components/Profile/buyerProfile';
+import Credit from './Components/Profile/profilePages/user/credit';
+import Purchase from './Components/Profile/profilePages/user/purchase';
+import TrackOrder from './Components/Profile/profilePages/user/order';
+import ForgotPassword from './Components/Profile/profilePages/user/forgot-password';
+import Cart from './Components/Orders/Cart';
+import WishList from './Components/Orders/wishlist';
 
 function App() {
   const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <><Header /><HomePage /></>
-    },
-    {
-      path: "/about",
-      element: <><Header /><About /></>
-    },
-    {
-      path: "/login",
-      element: <><Header /><Login /></>
-    },
-    {
-      path: "/signin",
-      element: <><Header /><Signin /></>
-    },
-    {
-      path: "/store",
-      element: <><Header /><Store /></>
-    },
-    {
-      path: "/product/:id",
-      element: <><Header /><Product_View /></>
-    },
-    {
-      path: "/logout",
-      element: <><Header /><Logout /></>
-    },
+    {path: "/", element: <><Header /><HomePage /></>},
+    {path: "/about",element: <><Header /><About /></>},
+    {path: "/login", element: <><Header /><Login /></>},
+    {path: "/signin", element: <><Header /><Signin /></>},
+    {path: "/store", element: <><Header /><Store /></> },
+    {path: "/product/:id", element: <><Header /><Product_View /></>},
+    {path: "/logout", element: <><Header /><Logout /></>},
+    {path: '/user-profile', element: <><Header /><Profile /></>},
+    {path: '/credit-points', element: <><Header /><Credit /></>},
+    {path: '/purchase-history', element: <><Header /><Purchase /></>},
+    {path: '/track-order', element: <><Header /><TrackOrder /></>},
+    {path: '/forgot-password', element: <><Header /><ForgotPassword /></>},
+    {path: '/cart', element: <><Header/><Cart/></>},
+    {path: '/wishlist', element: <><Header/><WishList/></>},
   ]);
   return (
     <div className="App">

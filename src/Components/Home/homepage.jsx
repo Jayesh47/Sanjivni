@@ -1,18 +1,32 @@
 import React from "react";
 import Contact from "./contact";
-import img1 from '../../static/tree2.jpg';
+import img1 from '../../static/tree1.jpg';
+import img2 from '../../static/tree2.jpg';
+import img3 from '../../static/tree3.jpg';
 import card1 from '../../static/plant.jpg';
+import logo from '../../static/logo.png';
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
     return (
         <section>
             <div className="homepage">
-                <div className="welcome-block">
-                    <img src={img1} alt="" />
+                <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
+                    <div className="carousel-inner">
+                        <div className="carousel-item active">
+                            <img src={img1} className="d-block w-100" alt="" />
+                        </div>
+                        <div className="carousel-item">
+                            <img src={img2} className="d-block w-100" alt="" />
+                        </div>
+                        <div className="carousel-item">
+                            <img src={img3} className="d-block w-100" alt="" />
+                        </div>
+                    </div>
                 </div>
-                <div className="taglines">
-                    <Link to="/store" className="browse">Browse More</Link>
+                <div className="tagline position-absolute">
+                    <img src={logo} alt="" width="150px" height="150px" />
+                    <h2>Grow For Yourself.</h2>
                 </div>
             </div>
             <div className="latest mt-5">

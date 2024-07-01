@@ -1,0 +1,23 @@
+.user-section {
+    form {
+        box-shadow: 2px 2px 12px #141414;
+        border-radius: 8px;
+
+        input {
+            border: 2px solid skyblue;
+        }
+    }
+}
+
+.profile-update-form {
+    box-shadow: 2px 2px 12px #141414;
+    border-radius: 8px;
+    padding: 16px;
+
+    input {
+        border: 2px solid skyblue;
+    }
+}
+.profile-img img {
+    box-shadow: 4px 4px 8px #1d1d1d;
+}
