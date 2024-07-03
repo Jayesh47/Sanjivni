@@ -16,6 +16,7 @@ export default function Store() {
                     <option value="">Fertilizers</option>
                 </select>
             </div>
+            <h1 className="text-center text-uppercase">Plants</h1>
             <div className="store-cards  d-flex justify-content-around flex-wrap">
                 {
                     demo_dataset.map((data) => (
