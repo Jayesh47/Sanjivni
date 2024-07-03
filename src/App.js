@@ -18,6 +18,13 @@ import TrackOrder from './Components/Profile/profilePages/user/order';
 import ForgotPassword from './Components/Profile/profilePages/user/forgot-password';
 import Cart from './Components/Orders/Cart';
 import WishList from './Components/Orders/wishlist';
+import BecomeSeller from './Components/Home/Auth/seller-register';
+import SellerLogin from './Components/Home/Auth/seller-login';
+import SellerProfile from './Components/Profile/sellerProfile';
+import AddNewItem from './Components/Profile/profilePages/seller/addNew';
+import Selling from './Components/Profile/profilePages/seller/selling';
+import ViewAll from './Components/Profile/profilePages/seller/viewall';
+import TotalEarnings from './Components/Profile/profilePages/seller/totalEarnings';
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +42,13 @@ function App() {
     {path: '/forgot-password', element: <><Header /><ForgotPassword /></>},
     {path: '/cart', element: <><Header/><Cart/></>},
     {path: '/wishlist', element: <><Header/><WishList/></>},
+    {path: '/become-seller', element: <><Header/><BecomeSeller/></>},
+    {path: '/seller-login', element: <><Header/><SellerLogin/></>},
+    {path: '/seller-profile', element: <><Header/><SellerProfile/></>},
+    {path: '/add-new-item', element: <><Header/><AddNewItem/></>},
+    {path: '/selling-products', element: <><Header/><Selling/></>},
+    {path: '/view-all', element: <><Header/><ViewAll/></>},
+    {path: '/total-earnings', element: <><Header/><TotalEarnings/></>},
   ]);
   return (
     <div className="App">

@@ -9,9 +9,17 @@
   .logo {
     margin-top: -10px;
     .social-icons {
-      span {
+      a {
         margin: 0px 8px;
-        font-size: 20px;
+        font-size: 18px;
+        color: #141414;
+        text-decoration: none;
+        padding: 2px;
+      }
+      a:hover {
+        transition: all 0.3s ease-in-out;
+        font-size: 22px;
+        color: brown;
       }
     }
   }
@@ -22,16 +30,16 @@
       list-style: none;
       padding: 6px;
       margin: 0px 20px;
-      font-size: 18px;
       a {
+        font-size: 18px;
         text-decoration: none;
         color: white;
         font-weight: 600;
         text-transform: uppercase;
       }
       a:hover {
-        transition: all 0.5ms ease-out;
-        border-bottom: 2px solid white;
+        transition: all 0.5ms ease-in-out;
+        border-bottom: 2px solid #e4e3e3;
       }
     }
   }

@@ -21,3 +21,23 @@
 .profile-img img {
     box-shadow: 4px 4px 8px #1d1d1d;
 }
+.seller-icon {
+    box-shadow: 2px 2px 5px #1d1d1d;
+    border-radius: 6px;
+}
+.add-item-form {
+    img {
+        box-shadow: 3px 3px 8px #141414;
+        border-radius: 6px;
+    }
+}
+.selling{
+    table {
+        th {
+            font-size: 18px;
+        }
+        td {
+            font-weight: 600    ;
+        }
+    }
+}

@@ -69,6 +69,7 @@ export default function Login() {
             });
             setTimeout(() => {
                 localStorage.setItem('Auth', true);
+                localStorage.setItem('role', "buyer");
                 window.location.href = "/";
             }, 2000);
         }
