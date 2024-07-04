@@ -25,6 +25,8 @@ import AddNewItem from './Components/Profile/profilePages/seller/addNew';
 import Selling from './Components/Profile/profilePages/seller/selling';
 import ViewAll from './Components/Profile/profilePages/seller/viewall';
 import TotalEarnings from './Components/Profile/profilePages/seller/totalEarnings';
+import ReviewDetails from './Components/Payment/buyerDetails';
+import Payment from './Components/Payment/payment';
 
 function App() {
   const router = createBrowserRouter([
@@ -49,6 +51,8 @@ function App() {
     {path: '/selling-products', element: <><Header/><Selling/></>},
     {path: '/view-all', element: <><Header/><ViewAll/></>},
     {path: '/total-earnings', element: <><Header/><TotalEarnings/></>},
+    {path: '/review-details', element: <><Header /><ReviewDetails /></>},
+    {path: '/checkout', element: <><Header /><Payment /></>}
   ]);
   return (
     <div className="App">

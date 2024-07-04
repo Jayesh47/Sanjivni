@@ -18,6 +18,9 @@
     margin: auto;
     margin-top: 3rem;
     border-radius: 6px;
+    th {
+        font-size: 18px;
+    }
 }
 
 .total-billing {

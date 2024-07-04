@@ -5,7 +5,7 @@ import img2 from '../../static/tree2.jpg';
 import img3 from '../../static/tree3.jpg';
 import card1 from '../../static/plant.jpg';
 import logo from '../../static/logo.png';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function HomePage() {
     return (
@@ -24,54 +24,114 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div className="tagline position-absolute">
-                    <img src={logo} alt="" width="150px" height="150px" />
-                    <h2>Grow For Yourself.</h2>
+                <div className="tagline position-absolute p-3">
+                    <img src={logo} alt="" width="180px" height="140px" />
+                    <h4>Grow For Yourself.</h4>
                 </div>
             </div>
             <div className="latest mt-5">
-                <h2 className="text-center">Recently Added</h2>
+                <h2 className="text-center mb-4">Recently Added</h2>
                 <div className="item-cards d-flex justify-content-around flex-wrap">
-                    <div className="card d-flex mt-5">
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
                         <div className="card-img">
-                            <img src={card1} alt="" width="280px" height="200px" />
+                            <img src={card1} alt="" width="200px" height="150px" />
                         </div>
                         <div className="card-body d-flex flex-column">
                             <h3>White Roses</h3>
                             <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
-                            <Link to="/signin?id=1001" className="view-more btn btn-primary mt-4">View More</Link>
+                            <strong className="text-success">Delivery Charges: Free</strong>
                         </div>
-                    </div>
-                    <div className="card d-flex mt-5">
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
                         <div className="card-img">
-                            <img src={card1} alt="" width="280px" height="200px" />
+                            <img src={card1} alt="" width="200px" height="150px" />
                         </div>
                         <div className="card-body d-flex flex-column">
                             <h3>White Roses</h3>
                             <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
-                            <Link to="/signin?id=1002" className="view-more btn btn-primary mt-4">View More</Link>
+                            <strong className="text-success">Delivery Charges: Free</strong>
                         </div>
-                    </div>
-                    <div className="card d-flex mt-5">
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
                         <div className="card-img">
-                            <img src={card1} alt="" width="280px" height="200px" />
+                            <img src={card1} alt="" width="200px" height="150px" />
                         </div>
                         <div className="card-body d-flex flex-column">
                             <h3>White Roses</h3>
                             <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
-                            <Link to="/signin?id=1003" className="view-more btn btn-primary mt-4">View More</Link>
+                            <strong className="text-success">Delivery Charges: Free</strong>
                         </div>
-                    </div>
-                    <div className="card d-flex mt-5">
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
                         <div className="card-img">
-                            <img src={card1} alt="" width="280px" height="200px" />
+                            <img src={card1} alt="" width="200px" height="150px" />
                         </div>
                         <div className="card-body d-flex flex-column">
                             <h3>White Roses</h3>
                             <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
-                            <Link to="/" className="view-more btn btn-primary mt-4">View More</Link>
+                            <strong className="text-success">Delivery Charges: Free</strong>
                         </div>
-                    </div>
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
+                        <div className="card-img">
+                            <img src={card1} alt="" width="200px" height="150px" />
+                        </div>
+                        <div className="card-body d-flex flex-column">
+                            <h3>White Roses</h3>
+                            <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
+                            <strong className="text-success">Delivery Charges: Free</strong>
+                        </div>
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
+                        <div className="card-img">
+                            <img src={card1} alt="" width="200px" height="150px" />
+                        </div>
+                        <div className="card-body d-flex flex-column">
+                            <h3>White Roses</h3>
+                            <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
+                            <strong className="text-success">Delivery Charges: Free</strong>
+                        </div>
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
+                        <div className="card-img">
+                            <img src={card1} alt="" width="200px" height="150px" />
+                        </div>
+                        <div className="card-body d-flex flex-column">
+                            <h3>White Roses</h3>
+                            <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
+                            <strong className="text-success">Delivery Charges: Free</strong>
+                        </div>
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
+                        <div className="card-img">
+                            <img src={card1} alt="" width="200px" height="150px" />
+                        </div>
+                        <div className="card-body d-flex flex-column">
+                            <h3>White Roses</h3>
+                            <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
+                            <strong className="text-success">Delivery Charges: Free</strong>
+                        </div>
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
+                        <div className="card-img">
+                            <img src={card1} alt="" width="200px" height="150px" />
+                        </div>
+                        <div className="card-body d-flex flex-column">
+                            <h3>White Roses</h3>
+                            <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
+                            <strong className="text-success">Delivery Charges: Free</strong>
+                        </div>
+                    </NavLink>
+                    <NavLink to="/" className="d-flex mx-3 my-2 border p-1 text-dark text-decoration-none flex-column">
+                        <div className="card-img">
+                            <img src={card1} alt="" width="200px" height="150px" />
+                        </div>
+                        <div className="card-body d-flex flex-column">
+                            <h3>White Roses</h3>
+                            <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
+                            <strong className="text-success">Delivery Charges: Free</strong>
+                        </div>
+                    </NavLink>
                 </div>
             </div>
             <Contact />

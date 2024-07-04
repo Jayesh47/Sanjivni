@@ -73,7 +73,7 @@ export default function Cart() {
                 </div>
                 <hr />
                 <div className="checkout-link text-center">
-                    <Link to="/cart" className="btn btn-success w-100 fw-bold">Proceed To Checkout</Link>
+                    <Link to="/review-details" className="btn btn-success w-100 fw-bold">Proceed To Checkout</Link>
                 </div>
             </div>
             <div className="promo-code p-2">

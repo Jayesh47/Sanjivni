@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body {
+  background: rgba(0,0,0,0) !important;
+}
 
 /* navbar designing */
 .navbar {
@@ -25,7 +28,7 @@
   }
   .nav-menu {
     margin-bottom: -8px;
-    background-color: #0034a5;
+    background-color: rgb(46, 46, 46);
     .nav-links {
       list-style: none;
       padding: 6px;
@@ -36,10 +39,11 @@
         color: white;
         font-weight: 600;
         text-transform: uppercase;
+        padding: 6px;
       }
       a:hover {
-        transition: all 0.5ms ease-in-out;
-        border-bottom: 2px solid #e4e3e3;
+        transition: all 0.3s ease-in-out;
+        border: 1px solid #e4e3e3;
       }
     }
   }
@@ -147,4 +151,9 @@
 .login-form {
   box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.4);
   border-radius: 8px;
+}
+.item-cards {
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+  padding: 6px;
+  flex-wrap: wrap;
 }

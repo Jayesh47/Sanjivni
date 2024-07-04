@@ -9,3 +9,12 @@
 .prod-desc {
     text-align: justify;
 }
+.percent {
+    color: red;
+}
+.desc-head, .desc {
+    li {
+        margin: 20px 0px;
+        list-style: none;
+    }
+}

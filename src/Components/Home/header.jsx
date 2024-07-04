@@ -44,7 +44,7 @@ export default function Header() {
     }, []);
 
     return (
-        <nav className="navbar ">
+        <nav className="navbar">
             <div className="logo d-flex justify-content-around align-items-center w-100">
                 <div className="social-icons w-50">
                     <a href="/"><i className="fab fa-facebook"></i></a>
@@ -52,7 +52,7 @@ export default function Header() {
                     <a href="/"><i className="fab fa-whatsapp"></i></a>
                     <a href="/"><i className="fab fa-github"></i></a>
                 </div>
-                <div className="nav-logo  w-50 text-center">
+                <div className="nav-logo p-2 w-50 text-center">
                     <img src={logo} alt="" width="90px" />
                 </div>
                 <div className="search w-50 d-flex justify-content-end">
