@@ -46,18 +46,18 @@ export default function Header() {
     return (
         <nav className="navbar">
             <div className="logo d-flex justify-content-around align-items-center w-100">
-                <div className="social-icons w-50">
+                <div className="nav-logo p-2 text-center">
+                    <img src={logo} alt="" width="130px" />
+                </div>
+                <div className="search w-50 d-flex justify-content-end">
+                    <input type="search" name="search" className="w-75 p-3" placeholder="What are you looking for?" />
+                    <button className="btn"><i className="fas fa-search"></i></button>
+                </div>
+                <div className="social-icons">
                     <a href="/"><i className="fab fa-facebook"></i></a>
                     <a href="/"><i className="fab fa-instagram"></i></a>
                     <a href="/"><i className="fab fa-whatsapp"></i></a>
                     <a href="/"><i className="fab fa-github"></i></a>
-                </div>
-                <div className="nav-logo p-2 w-50 text-center">
-                    <img src={logo} alt="" width="90px" />
-                </div>
-                <div className="search w-50 d-flex justify-content-end">
-                    <input type="search" name="search" className="form-control w-75" placeholder="Search Your Favorite Plant" />
-                    <button className="btn"><i className="fa fa-search"></i></button>
                 </div>
             </div>
             <ul className="nav-menu d-flex justify-content-center align-items-center w-100">
@@ -68,7 +68,7 @@ export default function Header() {
                 <li className="nav-links"><Link to="/about"><i className="fa fa-address-card"></i> About us</Link></li>
                 {
                     auth && (
-                        <span className="d-flex">
+                        <span className="d-flex align-items-center">
                             <li className="nav-links dropdown">
                                 <Link className="nav-link dropdown-toggle" to={links.link1} role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className="fa fa-user"></i> {Names.opt1}

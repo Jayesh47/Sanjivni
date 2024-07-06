@@ -96,7 +96,7 @@ export default function Signin() {
                 <label htmlFor="userpass">Confirm Password</label>
                 <input type="password" name="confirm-password" className="form-input p-1 mb-4" id="confirm-password" placeholder="Confirm Password" onChange={handleChange} />
                 <button type="submit" className="btn btn-primary w-25 fw-bold">Register</button>
-                <span className="options">If you already have account? <Link to="/">Signup.</Link></span>
+                <span className="options">If you already have account? <Link to="/login">Login.</Link></span>
                 <span className="options">If forgot password? <Link to="/">here.</Link></span>
             </form>
         </section>

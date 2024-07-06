@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import './store.css';
 
 export default function Product_View() {
-    const { id } = useParams();
+    // const { id } = useParams();
     return (
         <section className="productReview">
             <div className="product-detail d-flex mt-5">

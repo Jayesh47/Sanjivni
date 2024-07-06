@@ -7,7 +7,7 @@
 fontawesome-free-5.15.3-web
 # testing
 /coverage
-
+.env
 # production
 /build
 
