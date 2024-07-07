@@ -3,7 +3,7 @@ import logo from '../../static/logo.png';
 import { Link } from "react-router-dom";
 
 export default function Header() {
-    var auth = localStorage.getItem('Auth');
+    var auth = localStorage.getItem('loginStatus');
     const [links, setLinks] = useState({link1: "", link2: "", link3: "", link4: "", link5: ""});
     const [Names, setNames] = useState({opt1: "", opt2: "", opt3: "", opt4: "", opt5: ""});
     if (auth === "" | auth === undefined | auth === null) auth = false;

@@ -1,4 +1,4 @@
-const User = require('../models/userModel');
+const User = require('../../models/users/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -42,6 +42,7 @@ exports.userLogin = async (req, res) => {
         const user = await User.findOne({ 'userEmail': useremail });
 
         if (user.userEmail.length > 0) {
+            console.log("its works");
             if (user.userName === username) {
                 const verifyPass = await bcrypt.compare(userpass, user.userPassword);
                 if (verifyPass === true | verifyPass === 1) {
@@ -50,10 +51,10 @@ exports.userLogin = async (req, res) => {
                     res.send({ "status": "incorrect" });
                 }
             } else {
-                res.send({ "status": "username is incorrect" });
+                res.send({ "status": "username" });
             }
         } else {
-            res.send({ "status": "user not exists." });
+            res.send({ "status": "not exists." });
         }
     } catch (err) {
         res.send({ Status: 500, Error: err.toString() });

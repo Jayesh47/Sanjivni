@@ -12,7 +12,6 @@ function formReducer(state, event) {
 
 const Authenticate = (formData) => {
     const check = new FormData();
-    console.log(formData["useremail"]);
     // verification expressions.
     const verifyEmail = /[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
     const verifyPaswd = /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,13}$/;
@@ -65,7 +64,30 @@ export default function Login() {
         } else {
             const user = await axios.post('http://localhost:8000/user/user-login', formData);
             const response = user.data;
-            console.log(response["status"]);
+            console.log(response);
+            if (response["status"] === "success") {
+                localStorage.setItem('loginStatus', true);
+                localStorage.setItem('role', "buyer");
+                window.location.href = "/";
+            }else if (response["status"] === "incorrect") {
+                setAlert({
+                    AlertTitle: "warning",
+                    alertMsg: "Your password is incorrect.",
+                    show: true
+                });
+            }else if (response["status"] === "username") {
+                setAlert({
+                    AlertTitle: "warning",
+                    alertMsg: "Username is incorrect.",
+                    show: true
+                });
+            }else if(response["status"] === "not exists") {
+                setAlert({
+                    AlertTitle: "warning",
+                    alertMsg: "User not exists, please register first.",
+                    show: true
+                });
+            }
         }
     }
     return (

@@ -65,7 +65,7 @@ export default function Signin() {
                 show: true
             });
         }else {
-            const user = await axios.post('http://localhost:8000/user/user-register', formData);
+            const user = await axios.put('http://localhost:8000/user/user-register', formData);
             const response = user.data;
             if (response["status"] === "success") {
                 setAlert({
