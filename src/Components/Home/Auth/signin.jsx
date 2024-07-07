@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import logo from '../../../static/logo.png';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const formReducer = (state, event) => {
     return {
@@ -11,14 +12,14 @@ const formReducer = (state, event) => {
 
 const Authenticate = (formData) => {
     const check = new FormData();
-    // verification expressions.
+
     const verifyEmail = /[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
     const verifyPaswd = /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,13}$/;
-    // verify email.
+
     if (!verifyEmail.test(formData["useremail"])) {
         check.append("EmailVerify", "your email is incorrect!");
     }
-    // verify passwords.
+
     else if (!verifyPaswd.test(formData["userpass"])) {
         check.append("pswd_Verify", "please check, password must includes uppercase, numerics & special-chars.");
     }else if (formData["userpass"].length <= 8) {
@@ -32,6 +33,7 @@ const Authenticate = (formData) => {
     return check;
 }
 
+
 export default function Signin() {
     const [formData, setFormData] = useReducer(formReducer, {});
     const [Alert, setAlert] = useState({
@@ -39,7 +41,6 @@ export default function Signin() {
         alertMsg: "",
         show: false
     });
-
     
     const handleChange = (e) => {
         e.preventDefault();
@@ -48,7 +49,7 @@ export default function Signin() {
             value: e.target.value
         });
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const check = Authenticate(formData);
         if (check.get('pswd_Verify')) {
@@ -64,15 +65,24 @@ export default function Signin() {
                 show: true
             });
         }else {
-            setAlert({
-                AlertTitle: "success",
-                alertMsg: "Wait a moment please.",
-                show: true
-            });
-            setTimeout(() => {
-                localStorage.setItem('Auth', true);
-                window.location.href = "/";
-            }, 2000);
+            const user = await axios.post('http://localhost:8000/user/user-register', formData);
+            const response = user.data;
+            if (response["status"] === "success") {
+                setAlert({
+                    AlertTitle: "success",
+                    alertMsg: "Wait a moment please.",
+                    show: true
+                });
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 1500);
+            }else if (response["status"] === "exists") {
+                setAlert({
+                    AlertTitle: "warning",
+                    alertMsg: "User already exists, Please Login.",
+                    show: true
+                });
+            }
         }
     }
     return (

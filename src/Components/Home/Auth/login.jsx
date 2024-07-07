@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import logo from '../../../static/logo.png';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function formReducer(state, event) {
     return {
@@ -46,7 +47,7 @@ export default function Login() {
             "value": e.target.value
         });
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const check = Authenticate(formData);
         if (check.get('pswd_Verify')) {
@@ -62,16 +63,9 @@ export default function Login() {
                 show: true
             });
         } else {
-            setAlert({
-                AlertTitle: "success",
-                alertMsg: "Wait a moment please.",
-                show: true
-            });
-            setTimeout(() => {
-                localStorage.setItem('Auth', true);
-                localStorage.setItem('role', "buyer");
-                window.location.href = "/";
-            }, 2000);
+            const user = await axios.post('http://localhost:8000/user/user-login', formData);
+            const response = user.data;
+            console.log(response["status"]);
         }
     }
     return (
