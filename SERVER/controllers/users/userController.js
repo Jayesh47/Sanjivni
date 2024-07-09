@@ -2,31 +2,23 @@ const User = require('../../models/users/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-function createjwttoken(payload) {
-    return jwt.sign(payload, 'hM22hxPEPHDDfYB', { expiresIn: '1h' });
-}
-
-function verifyTokens(token) {
-    return jwt.verify(token, 'hM22hxPEPHDDfYB');
-}
-
 exports.Register = async (req, res) => {
     try {
-        const { username, useremail, userpass } = req.body;
+        const { username, useremail, userpass, userRoles } = req.body;
         // hash the password.
         const hashPassword = await bcrypt.hash(userpass, 10);
 
         // check email is exists or not.
         const userEmail = await User.findOne({ "userEmail": useremail });
-        if (userEmail.userEmail.length > 0) {
+        if (userEmail) {
             res.status(200).send({ "status": "exists" });
         }
-
         // Save data to database.
         const user = new User({
             "userName": username,
             "userEmail": useremail,
-            "userPassword": hashPassword
+            "userPassword": hashPassword,
+            "userRoles": userRoles
         });
         await user.save();
         res.status(200).send({ "status": "success" });
@@ -46,7 +38,8 @@ exports.userLogin = async (req, res) => {
             if (user.userName === username) {
                 const verifyPass = await bcrypt.compare(userpass, user.userPassword);
                 if (verifyPass === true | verifyPass === 1) {
-                    res.send({ "status": "success" });
+                    const token = jwt.sign({userId: user["_id"], roles: user.userRoles}, "XQs2i6C3fk5dsDZ", {expiresIn: '1h'});
+                    res.send({ "status": "success", "user": token });
                 } else {
                     res.send({ "status": "incorrect" });
                 }

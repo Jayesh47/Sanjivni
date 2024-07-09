@@ -75,19 +75,20 @@ export default function HomePage() {
                 <h3 className="text-center my-5 text-decoration-underline">Grow For Yourself!</h3>
                 <div className="tagline d-flex justify-content-around align-items-center">
                     <span>
-                        <img src={user} alt="" width="80px" height="80px" />
-                        <h3>Help</h3>
+                        {/* <img src={user} alt="" width="80px" height="80px" /> */}
+                        <svg class="icon-people " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">      <path d="M6.1875 14.4375C6.1875 16.4432 6.98426 18.3668 8.40251 19.785C9.82075 21.2032 11.7443 22 13.75 22C15.7557 22 17.6793 21.2032 19.0975 19.785C20.5157 18.3668 21.3125 16.4432 21.3125 14.4375C21.3125 12.4318 20.5157 10.5082 19.0975 9.09001C17.6793 7.67176 15.7557 6.875 13.75 6.875C11.7443 6.875 9.82075 7.67176 8.40251 9.09001C6.98426 10.5082 6.1875 12.4318 6.1875 14.4375V14.4375Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M1.375 37.125C1.375 33.8429 2.67879 30.6953 4.99955 28.3746C7.32032 26.0538 10.4679 24.75 13.75 24.75C17.0321 24.75 20.1797 26.0538 22.5004 28.3746C24.8212 30.6953 26.125 33.8429 26.125 37.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M26.312 18.5625C26.312 20.2035 26.9639 21.7773 28.1243 22.9377C29.2847 24.0981 30.8585 24.75 32.4995 24.75C34.1405 24.75 35.7144 24.0981 36.8747 22.9377C38.0351 21.7773 38.687 20.2035 38.687 18.5625C38.687 16.9215 38.0351 15.3477 36.8747 14.1873C35.7144 13.0269 34.1405 12.375 32.4995 12.375C30.8585 12.375 29.2847 13.0269 28.1243 14.1873C26.9639 15.3477 26.312 16.9215 26.312 18.5625V18.5625Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M28.9907 27.6247C30.5217 27.0604 32.1663 26.8743 33.7847 27.0821C35.4031 27.29 36.9473 27.8856 38.286 28.8184C39.6248 29.7512 40.7184 30.9936 41.4739 32.4398C42.2293 33.886 42.6243 35.4933 42.6252 37.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>    </svg>
+                        <h3>Helpline</h3>
                     </span>
                     <span>
-                        <img src={delivery} alt="" width="80px" height="80px" />
+                        <img src={delivery} alt="" width="180px" height="80px" />
                         <h3>Track Order</h3>
                     </span>
                     <span>
-                        <img src={offer1} alt="" width="80px" height="80px" />
+                        <img src={offer1} alt="" width="90px" height="90px" />
                         <h3>Offer</h3>
                     </span>
                     <span>
-                        <img src={reward} alt="" width="80px" height="80px" />
+                        <img src={reward} alt="" width="80px" height="85px" />
                         <h3>Rewards</h3>
                     </span>
                 </div>

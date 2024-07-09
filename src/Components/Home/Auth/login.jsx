@@ -68,7 +68,10 @@ export default function Login() {
             if (response["status"] === "success") {
                 localStorage.setItem('loginStatus', true);
                 localStorage.setItem('role', "buyer");
+                localStorage.setItem('token', response["user"]);
+
                 window.location.href = "/";
+
             }else if (response["status"] === "incorrect") {
                 setAlert({
                     AlertTitle: "warning",

@@ -7,7 +7,9 @@ const userSchema = new mongoose.Schema({
     userPassword: {type: String, required: true},
     userPhone: {type: String},
     userAddress: {type: String},
-    userPinCode: {type: String}
+    userPinCode: {type: String},
+    userRoles: {type: String},
+    userCity: {type: String}
 });
 const User = mongoose.model('Customer', userSchema);
 module.exports = User; 

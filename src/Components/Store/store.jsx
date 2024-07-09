@@ -16,20 +16,29 @@ export default function Store() {
                     <option value="">Fertilizers</option>
                 </select>
             </div>
-            <h1 className="text-center text-uppercase">Plants</h1>
-            <div className="store-cards  d-flex justify-content-around flex-wrap">
+            <h1 className="text-center text-uppercase mt-3">Plants</h1>
+            <div className="store-cards mt-5 d-flex justify-content-around flex-wrap">
                 {
                     demo_dataset.map((data) => (
-                        <div className="card d-flex mt-5" key={data.id}>
-                            <div className="card-img">
-                                <img src={data._image} alt="" width="280px" height="200px" />
+                        <Link to="/" className="product-card d-flex mx-3 my-3 text-dark text-decoration-none flex-column">
+                            <div className="card-img px-3 pt-3">
+                                <img src={data._image} alt="" width="220px" height="200px" />
+                                <span className="tag">Save 12%</span>
                             </div>
-                            <div className="card-body d-flex flex-column">
-                                <h3>White Roses</h3>
-                                <strong>Price: Rs. 2500.00 <strike>3000.00</strike></strong>
-                                <Link to={'/product/'+data.id} className="view-more btn btn-primary mt-4">View More</Link>
+                            <div className="card-body px-3 pb-3 d-flex flex-column">
+                                <strike>₹ 750.00</strike>
+                                <h3>₹ 599.00</h3>
+                                <p>Michelia Champa, Son Champa (Orange, Grafted) - Plant</p>
+                                <div className="review">
+                                    <span><i className="fa fa-star"></i></span>
+                                    <span><i className="fa fa-star"></i></span>
+                                    <span><i className="fa fa-star"></i></span>
+                                    <span><i className="fa fa-star"></i></span>
+                                    <span><i className="fa fa-star"></i></span>
+                                    <span className="ms-2 text-dark reviews">339 reviews</span>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))
                 }
             </div>

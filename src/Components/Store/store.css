@@ -1,20 +1,38 @@
-.card {
-    width: fit-content;
-}
-.store {
-    .filter {
-        width: 10rem;
+.store-cards {
+    .product-card {
+        width: 260px;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        .tag {
+            background-color: rgb(243, 34, 69);
+            color: white;
+            font-weight: 600;
+            padding: 2px;
+            position: relative;
+            top: -24px;
+        }
+        strike {
+            margin-top: -20px;
+        }
+        h3 {
+            color: red;
+        }
+        p {
+            width: 14.3rem;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        p:hover {
+            color: rgb(250, 37, 72);
+        }
+        .review {
+            span {
+                color: rgb(235, 235, 59);
+                font-size: 20px;
+            }
+            .reviews {
+                font-size: 16px;
+            }
+        }
     }
-}
-.prod-desc {
-    text-align: justify;
-}
-.percent {
-    color: red;
-}
-.desc-head, .desc {
-    li {
-        margin: 20px 0px;
-        list-style: none;
-    }
+    
 }

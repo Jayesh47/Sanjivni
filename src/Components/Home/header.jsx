@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from "react";
 import logo from '../../static/logo.png';
 import { Link } from "react-router-dom";
+import { jwtDecode } from 'jwt-decode';
 
 export default function Header() {
     var auth = localStorage.getItem('loginStatus');
-    const [links, setLinks] = useState({link1: "", link2: "", link3: "", link4: "", link5: ""});
-    const [Names, setNames] = useState({opt1: "", opt2: "", opt3: "", opt4: "", opt5: ""});
+    const [links, setLinks] = useState({ link1: "", link2: "", link3: "", link4: "", link5: "" });
+    const [Names, setNames] = useState({ opt1: "", opt2: "", opt3: "", opt4: "", opt5: "" });
     if (auth === "" | auth === undefined | auth === null) auth = false;
     useEffect(() => {
-        const role = localStorage.getItem("role");
-        if (role === "buyer") {
-            setLinks({
-                link1: "/user-profile",
-                link2: "/credit-points",
-                link3: "/track-order",
-                link4: "/purchase-history",
-                link5: "/forgot-password"
-            });
-            setNames({
-                opt1: "User Profile",
-                opt2: "Credit Points",
-                opt3: "Track Orders",
-                opt4: "Purchase History",
-                opt5: "Forgot Password"
-            });
-        } 
-        if (role === "seller") {
-            setLinks({
-                link1: "/seller-profile",
-                link2: "/add-new-item",
-                link3: "/selling-products",
-                link4: "/view-all",
-                link5: "/total-earnings"
-            })
-            setNames({
-                opt1: "Seller Profile",
-                opt2: "Add New",
-                opt3: "Selling Products",
-                opt4: "View All",
-                opt5: "Total Earnings"
-            })
+        const token = localStorage.getItem("token");
+        if (token) {
+            const role = jwtDecode(token)["roles"];
+            if (role === "buyer") {
+                setLinks({
+                    link1: "/user-profile",
+                    link2: "/credit-points",
+                    link3: "/track-order",
+                    link4: "/purchase-history",
+                    link5: "/forgot-password"
+                });
+                setNames({
+                    opt1: "User Profile",
+                    opt2: "Credit Points",
+                    opt3: "Track Orders",
+                    opt4: "Purchase History",
+                    opt5: "Forgot Password"
+                });
+            }
+            if (role === "seller") {
+                setLinks({
+                    link1: "/seller-profile",
+                    link2: "/add-new-item",
+                    link3: "/selling-products",
+                    link4: "/view-all",
+                    link5: "/total-earnings"
+                })
+                setNames({
+                    opt1: "Seller Profile",
+                    opt2: "Add New",
+                    opt3: "Selling Products",
+                    opt4: "View All",
+                    opt5: "Total Earnings"
+                })
+            }
         }
     }, []);
 
