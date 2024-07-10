@@ -2,6 +2,7 @@ import React, { useReducer, useState } from "react";
 import logo from '../../../static/logo.png';
 import './authenticate.css';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export default function SellerLogin() {
     const [formData, setFormData] = useReducer(formReducer, {});
@@ -18,9 +19,10 @@ export default function SellerLogin() {
             "value": e.target.value
         });
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const check = Authenticate(formData);
+
         if (check.get('pswd_Verify')) {
             setAlert({
                 AlertTitle: "warning",
@@ -34,16 +36,26 @@ export default function SellerLogin() {
                 show: true
             });
         } else {
-            setAlert({
-                AlertTitle: "success",
-                alertMsg: "Wait a moment please.",
-                show: true
-            });
-            setTimeout(() => {
-                localStorage.setItem('Auth', true);
+            const getRes = await axios.post("http://localhost:8000/seller/seller-login", formData);
+            const res = getRes.data;
+            if (res["Status"] === "Success") {
+                localStorage.setItem('loginStatus', true);
                 localStorage.setItem('role', "seller");
-                window.location.href = "/";
-            }, 2000);
+                localStorage.setItem('token', res["token"]);
+                window.location.href = "/seller-profile";
+            } else if (res["Status"] === "incorrect password") {
+                setAlert({
+                    AlertTitle: "Warning",
+                    alertMsg: "Incorrect Password, Try Again!",
+                    show: true
+                });
+            } else if (res["Status"] === "invalid name") {
+                setAlert({
+                    AlertTitle: "Warning",
+                    alertMsg: "Incorrect Username!",
+                    show: true
+                });
+            }
         }
     }
     return (
@@ -54,13 +66,13 @@ export default function SellerLogin() {
             </span>
             <form method="post" onSubmit={handleSubmit} className="seller-form form w-50 m-auto">
                 {
-                    Alert.show && <div className={`alert alert-${Alert.AlertTitle}`}>
+                    Alert.show && <div className="alert alert-secondary">
                         <strong>{Alert.AlertTitle}: </strong><span>{Alert.alertMsg}</span>
                     </div>
                 }
-                <input type="text" name="seller-name" className="seller-name form-control" placeholder="Your Username Here." onChange={handleChange} />
-                <input type="text" name="seller-email" className="seller-email form-control my-4" placeholder="Your Organizational Email Here." onChange={handleChange} />
-                <input type="password" name="seller-pass" className="create-pass form-control mb-4" placeholder="Create Your Password Here." onChange={handleChange} />
+                <input type="text" name="sellername" className="seller-name form-control" placeholder="Your Username Here." onChange={handleChange} />
+                <input type="text" name="selleremail" className="seller-email form-control my-4" placeholder="Your Organizational Email Here." onChange={handleChange} />
+                <input type="password" name="sellerpass" className="create-pass form-control mb-4" placeholder="Create Your Password Here." onChange={handleChange} />
                 <span>if don't have an account? <Link to="/become-seller">Register Here.</Link></span><br />
                 <button type="submit" className="btn btn-primary mt-3">Login</button>
             </form>
@@ -81,13 +93,13 @@ const Authenticate = (formData) => {
     const verifyEmail = /[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
     const verifyPaswd = /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,13}$/;
     // verify email.
-    if (!verifyEmail.test(formData["seller-email"])) {
+    if (!verifyEmail.test(formData["selleremail"])) {
         check.append("EmailVerify", "your email is incorrect!");
     }
     // verify passwords.
-    if (!verifyPaswd.test(formData["seller-pass"])) {
+    if (!verifyPaswd.test(formData["sellerpass"])) {
         check.append("pswd_Verify", "please check, password must includes uppercase, numerics & special-chars.");
-    } else if (formData["seller-pass"].length <= 8) {
+    } else if (formData["sellerpass"].length <= 8) {
         check.append("pswd_Verify", "please password must be 8 chars.");
         console.log("please password must be 8 chars.");
     } else {

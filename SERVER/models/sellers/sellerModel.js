@@ -7,7 +7,9 @@ const SellerSchema = new mongoose.Schema({
     SellerCity: {type: String},
     SellerLandmark: {type: String},
     SellerPincode: {type: String},
-    SellerPhone: {type: String}
+    SellerPhone: {type: String},
+    SellerRole: {type: String, default: "Seller"},
+    SellerIcon: {type: String}
 });
-const Seller = mongoose.model({"Seller": SellerSchema});
+const Seller = mongoose.model("Seller", SellerSchema);
 module.exports = Seller;

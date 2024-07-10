@@ -19,9 +19,11 @@ mongoose.connect(process.env.DATABASE, {dbName: 'SanjivniDB'}).then(() => {
 
 // imports all routes.
 const userRegister = require('./Routes/userRoutes.js');
+const SellerRegister = require('./Routes/sellerRoutes.js');
 
 // all initial routings.
 app.use('/user', userRegister);
+app.use('/seller', SellerRegister);
 
 
 // port server.

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import offer from '../../static/offer.png';
 import reward from '../../static/rewards.jpg';
 import delivery from '../../static/delivery.jpg';
-import user from '../../static/users-freinds.png';
+// import user from '../../static/users-freinds.png';
 
 export default function HomePage() {
     return (

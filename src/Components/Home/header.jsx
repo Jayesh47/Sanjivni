@@ -10,8 +10,10 @@ export default function Header() {
     if (auth === "" | auth === undefined | auth === null) auth = false;
     useEffect(() => {
         const token = localStorage.getItem("token");
+        console.log(token);
         if (token) {
             const role = jwtDecode(token)["roles"];
+            console.log(role);
             if (role === "buyer") {
                 setLinks({
                     link1: "/user-profile",
@@ -28,7 +30,7 @@ export default function Header() {
                     opt5: "Forgot Password"
                 });
             }
-            if (role === "seller") {
+            if (role === "Seller") {
                 setLinks({
                     link1: "/seller-profile",
                     link2: "/add-new-item",
