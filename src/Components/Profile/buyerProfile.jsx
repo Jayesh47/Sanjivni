@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
-import img from '../../static/tree2.jpg';
 import './admin.css';
 import axios from "axios";
+import { text } from "body-parser";
 
 const formReducer = (state, event) => {
     return ({
@@ -25,14 +25,15 @@ export default function Profile() {
             const details = await axios.get('http://localhost:8000/user/user-details', { 'headers': { 'Authorization': `Bearer ${token}` } });
             const response = details.data;
             if (response["city"] && response["adrs"]) {
+                console.log(response["userImg"]);
                 setRetreive({
-                    name: response["username"],
+                    name: response["username"].toUpperCase(),
                     imgs: response["userImg"],
                     phone: response["userphone"],
                     mail: response["useremail"],
-                    adrs: response["adrs"],
-                    city: response["city"].split(',')[0],
-                    state: response["city"].split(',')[1],
+                    adrs: response["adrs"].toUpperCase(),
+                    city: response["city"].split(',')[0].toUpperCase(),
+                    state: response["city"].split(',')[1].toUpperCase(),
                     pin: response["userpin"]
                 });
             }else {
@@ -61,6 +62,7 @@ export default function Profile() {
         setUser({ ...userDetails, usericon: e.target.files[0] });
         console.log(userDetails.usericon);
     }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -102,10 +104,10 @@ export default function Profile() {
                     <strong>{Alert.AlertTitle}: </strong><span>{Alert.alertMsg}</span>
                 </div>
             }
-            <h1 className="text-center mt-3">Welcome Jayesh</h1>
+            <h1 className="text-center mt-3">Welcome {retrieve.name}</h1>
             <div className="profile-layout w-75 m-auto d-flex mt-5">
                 <div className="profile-img w-25">
-                    <img src={"http://localhost:8000/upload/" + retrieve.imgs} alt="" width="200px" height="180px" />
+                    <img src={"http://localhost:8000/upload/" + retrieve["imgs"]} alt="" width="200px" height="180px" />
                 </div>
                 <div className="profile-update-form w-75">
                     <form method="post" className="form" onSubmit={handleSubmit} encType="multipart/form-data">

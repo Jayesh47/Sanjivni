@@ -20,10 +20,10 @@ export default function SellerProfile() {
             const res = getResp.data;
             if (res["SCity"] && res["Street"]) {
                 setDetails({
-                    name: res["SName"], icon: res["SIcon"],
+                    name: res["SName"].toUpperCase(), icon: res["SIcon"],
                     phone: res["SPhone"], mail: res["SEmail"],
-                    adrs: res["Street"], city: res["SCity"].split(",")[0],
-                    state: res["SCity"].split(',')[1], pin: res["SPin"], land: res["SLand"]
+                    adrs: res["Street"].toUpperCase(), city: res["SCity"].split(",")[0].toUpperCase(),
+                    state: res["SCity"].split(',')[1].toUpperCase(), pin: res["SPin"], land: res["SLand"].toUpperCase()
                 });
             }else {
                 setDetails({
@@ -80,7 +80,7 @@ export default function SellerProfile() {
 
     return (
         <section className="seller-profile">
-            <h1 className="text-center my-4">{details.name} Dashboard</h1>
+            <h1 className="text-center my-4 text-capitalize">{details.name} Dashboard</h1>
             {
                 Alert.show && (
                     <div className="alert alert-success">

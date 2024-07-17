@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Header from './Components/Home/header';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -17,7 +18,6 @@ import Purchase from './Components/Profile/profilePages/user/purchase';
 import TrackOrder from './Components/Profile/profilePages/user/order';
 import ForgotPassword from './Components/Profile/profilePages/user/forgot-password';
 import Cart from './Components/Orders/Cart';
-import WishList from './Components/Orders/wishlist';
 import BecomeSeller from './Components/Home/Auth/seller-register';
 import SellerLogin from './Components/Home/Auth/seller-login';
 import SellerProfile from './Components/Profile/sellerProfile';
@@ -27,6 +27,7 @@ import ViewAll from './Components/Profile/profilePages/seller/viewall';
 import TotalEarnings from './Components/Profile/profilePages/seller/totalEarnings';
 import ReviewDetails from './Components/Payment/buyerDetails';
 import Payment from './Components/Payment/payment';
+import UpdateProduct from './Components/Profile/profilePages/seller/UpdateProduct';
 
 function App() {
   const router = createBrowserRouter([
@@ -34,8 +35,9 @@ function App() {
     { path: "/about", element: <><Header /><About /></> },
     { path: "/login", element: <><Header /><Login /></> },
     { path: "/signin", element: <><Header /><Signin /></> },
-    { path: "/store", element: <><Header /><Store /></> },
-    { path: "/product/:id", element: <><Header /><Product_View /></> },
+    { path: "/Store", element: <><Header /><Store /></> },
+    { path: "/store/:filters", element: <><Header /><Store /></> },
+    { path: "/product/:prodid", element: <><Header /><Product_View /></> },
     { path: "/logout", element: <><Header /><Logout /></> },
     { path: '/user-profile', element: <><Header /><Profile /></> },
     { path: '/credit-points', element: <><Header /><Credit /></> },
@@ -43,7 +45,6 @@ function App() {
     { path: '/track-order', element: <><Header /><TrackOrder /></> },
     { path: '/forgot-password', element: <><Header /><ForgotPassword /></> },
     { path: '/cart', element: <><Header /><Cart /></> },
-    { path: '/wishlist', element: <><Header /><WishList /></> },
     { path: '/become-seller', element: <><Header /><BecomeSeller /></> },
     { path: '/seller-login', element: <><Header /><SellerLogin /></> },
     { path: '/seller-profile', element: <><Header /><SellerProfile /></> },
@@ -52,7 +53,8 @@ function App() {
     { path: '/view-all', element: <><Header /><ViewAll /></> },
     { path: '/total-earnings', element: <><Header /><TotalEarnings /></> },
     { path: '/review-details', element: <><Header /><ReviewDetails /></> },
-    { path: '/checkout', element: <><Header /><Payment /></> }
+    { path: '/checkout', element: <><Header /><Payment /></> },
+    { path: '/edit-product/:product', element: <><Header/><UpdateProduct/></> },
   ]);
   return (
     <div className="App">

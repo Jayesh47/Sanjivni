@@ -31,11 +31,11 @@ exports.Register = async (req, res) => {
 exports.userLogin = async (req, res) => {
     try {
         const { username, useremail, userpass } = req.body;
-        const user = await User.findOne({ 'userEmail': useremail });
+        const user = await User.findOne({ 'userEmail': useremail.toLowerCase() });
 
         if (user.userEmail.length > 0) {
             console.log("its works");
-            if (user.userName === username) {
+            if (user.userName.toLowerCase() === username.toLowerCase()) {
                 const verifyPass = await bcrypt.compare(userpass, user.userPassword);
                 if (verifyPass === true | verifyPass === 1) {
                     const token = jwt.sign({userId: user["_id"], roles: user.userRoles}, "XQs2i6C3fk5dsDZ", {expiresIn: '1h'});

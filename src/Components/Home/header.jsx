@@ -10,10 +10,8 @@ export default function Header() {
     if (auth === "" | auth === undefined | auth === null) auth = false;
     useEffect(() => {
         const token = localStorage.getItem("token");
-        console.log(token);
         if (token) {
             const role = jwtDecode(token)["roles"];
-            console.log(role);
             if (role === "buyer") {
                 setLinks({
                     link1: "/user-profile",
@@ -70,7 +68,6 @@ export default function Header() {
                 <li className="nav-links"><Link to="/"><i className="fa fa-home"></i> Home</Link></li>
                 <li className="nav-links"><Link to="/Store"><i className="fa fa-store"></i> Store</Link></li>
                 <li className="nav-links"><Link to="/cart"><i className="fa fa-shopping-cart"></i> Cart</Link></li>
-                <li className="nav-links"><Link to="/wishlist"><i className="fa fa-heart"></i> Wishlist</Link></li>
                 <li className="nav-links"><Link to="/about"><i className="fa fa-address-card"></i> About us</Link></li>
                 {
                     auth && (

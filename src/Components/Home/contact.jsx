@@ -1,5 +1,5 @@
 import React from "react";
-import contact_img from '../../static/tree3.jpg';
+import contact_img from '../../static/contact.jpeg';
 
 export default function Contact() {
     return (

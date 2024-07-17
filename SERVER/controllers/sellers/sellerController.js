@@ -6,13 +6,15 @@ const secretKey = "6BBSjfFBjnJuUzu";
 exports.SellerRegister = async (req, res) => {
     try {
         const getData = req.body;
-        console.log(getData);
         const fetchData = await Seller.findOne({ 'SellerEmail': getData["seller-email"] });
         if (fetchData) {
             res.status(200).send({ "Status": "exists" });
         } else {
             const hashPass = await bcrypt.hash(getData["create-pass"], 10);
-            const SaveData = await Seller.create({ "SellerName": getData["seller-name"], "SellerEmail": getData["seller-email"], "SellerPassword": hashPass });
+            const SaveData = await Seller.create({ 
+                "SellerName": getData["seller-name"].toLowerCase(), 
+                "SellerEmail": getData["seller-email"].toLowerCase(), 
+                "SellerPassword": hashPass });
             if (SaveData) {
                 res.status(200).send({ "Status": "Success" });
             } else {
@@ -28,10 +30,10 @@ exports.SellerLogin = async (req, res) => {
     try {
         const { sellername, selleremail, sellerpass } = req.body;
 
-        const userDetails = await Seller.findOne({ "SellerEmail": selleremail });
+        const userDetails = await Seller.findOne({ "SellerEmail": selleremail.toLowerCase() });
         if (userDetails) {
             const checkPass = await bcrypt.compare(sellerpass, userDetails.SellerPassword);
-            if (sellername !== userDetails.SellerName) {
+            if (sellername.toLowerCase() !== userDetails.SellerName) {
                 res.status(200).send({"Status": "invalid name"});
             }
             if (checkPass === true) {
@@ -47,9 +49,3 @@ exports.SellerLogin = async (req, res) => {
         console.log(err)
     };
 }
-// {
-//     'seller-name': 'Jayesh malviya',
-//     'seller-email': 'Jayesh@gmail.com',
-//     'seller-pass': 'Jayesh@123',
-//      confirm: 'Jayesh@123'
-// }
