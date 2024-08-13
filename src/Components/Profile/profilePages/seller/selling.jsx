@@ -1,12 +1,20 @@
-import React, { useState } from "react";
-import selling_img from '../../../../static/tree1.jpg';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export default function Selling() {
-    const [getHistory, setHistory] = useState({prodImg: "", prodName: "", prodQty: "", prodStatus: ""});
+    const [getHistory, setHistory] = useState([]);
+    const handleHistory = async () => {
+        const seller = jwtDecode(localStorage.getItem('token'))["userId"];
+        const api = await axios.put('http://localhost:8000/seller/purchased-products', { _seller: btoa(btoa(seller)) });
+        const data = api.data;
+        console.log(data);
+    }
+    useEffect(() => { handleHistory() }, []);
 
     return (
         <section className="selling">
-            <h1 className="text-center my-4">Selling History</h1>
+            <h1 className="text-center my-4">Products Sold</h1>
             <table className="table w-75 m-auto">
                 <thead>
                     <tr>
@@ -18,10 +26,10 @@ export default function Selling() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="align-middle"><img src={selling_img} alt="" width="200px" height="160px" /></td>
-                        <td className="align-middle">Chandan Trees</td>
-                        <td className="align-middle">20 units</td>
-                        <td className="align-middle">19/07/2024</td>
+                        <td className="align-middle"><img src={"http://localhost:8000/productUpload/"} alt="" width="200px" height="160px" /></td>
+                        <td className="align-middle"></td>
+                        <td className="align-middle"></td>
+                        <td className="align-middle"></td>
                     </tr>
                 </tbody>
             </table>

@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     userAddress: {type: String},
     userPinCode: {type: String},
     userRoles: {type: String},
-    userCity: {type: String}
+    userCity: {type: String},
+    userLandMark: {type: String}
 });
 const User = mongoose.model('Customer', userSchema);
 module.exports = User; 

@@ -1,4 +1,5 @@
 const Product = require('../../models/products/productModel');
+const pay = require('../../models/products/upiModel');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const secretKey = "6BBSjfFBjnJuUzu";
@@ -18,7 +19,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const VerifyToken = (req, res, next) => {
-    console.log(req.body.token === undefined);
     if (req.body.token !== undefined) {
         const { token } = req.body;
         jwt.verify(token, secretKey, (err, msg) => {
@@ -53,6 +53,9 @@ exports.AddProduct = [
                 if (category !== "undefined") product["productCategory"] = category.toString();
                 if (_thumbnail) product["thumbnail"] = _thumbnail;
                 product["_SellerId"] = _sellerId;
+                const cal = price - (parseFloat(price) * parseFloat(discount)) / 100;
+                const disPrice = Math.round(cal * 100) / 100;
+                product["creditPoint"] = disPrice / 50;
 
                 const add = await Product.create(product);
                 add.save();
@@ -115,7 +118,7 @@ exports.productDetails = async (req, res) => {
             prodDesc: getProd.productDesc,
             prodDisc: getProd.productDiscount,
             prodPrice: getProd.productPrice,
-            prodQty: getProd.productQty,
+            prodQty: getProd.productQty
         });
     } catch (err) {
         console.log(err);
@@ -128,7 +131,7 @@ exports.updateDetails = [
         try {
             const product = req.body;
 
-            const old_data = await Product.findOne({_id: product["prodId"]});
+            const old_data = await Product.findOne({ _id: product["prodId"] });
 
             const data = {};
             if (product["item-title"] !== undefined) data["productTitle"] = product["item-title"]; else data["productTitle"] = old_data.productTitle;
@@ -139,18 +142,63 @@ exports.updateDetails = [
             try {
                 if (req.file.filename !== undefined) data["thumbnail"] = req.file.filename;
                 data["createAt"] = Date.now();
-            }catch (err) {
+            } catch (err) {
                 data["thumbnail"] = old_data.thumbnail;
             }
 
             if (data) {
                 const update = await Product.findByIdAndUpdate(product["prodId"], data);
-                if (update) res.status(200).send({"Status": "Success"});
-            }else {
-                res.status(200).send({"Status": "Not Updated!"});
+                if (update) res.status(200).send({ "Status": "Success" });
+            } else {
+                res.status(200).send({ "Status": "Not Updated!" });
             }
         } catch (err) {
             console.log(err);
         }
     }
 ];
+
+const findProduct = async (productId) => {
+    return await Product.findById(productId.toString());
+}
+
+exports.soldProducts = async (req, res) => {
+    try {
+        let { _seller } = req.body;
+        const _sellerId = atob(atob(_seller));
+        const _buying = await pay.find();
+        var product = [];
+        // _buying.forEach(async data => {
+        //     for (let i=0; i<data.productId.length; i++) {
+        //         if (_sellerId === data.productId[i]["Seller"]) {
+        //             const item = await Product.findById(data.productId[i]["product"].toString());
+        //             product.push(item.productTitle);
+        //         }
+        //     }
+        // })
+        const data = await Promise.all(_buying.map(async _pays => {
+            const products = await Promise.all(_pays.productId.map(async prod => {
+                if (_sellerId === prod["Seller"]) {
+                    const item = await findProduct(prod["product"]);
+                    return {
+                        item_img: item.thumbnail,
+                        item_name: item.productTitle,
+                        item_qty: prod["quantity"],
+                        item_purchase_time: _pays["timeStamp"]
+                    };
+                }
+            }));
+            return products.filter(product => product !== undefined);
+        }));
+        
+        const filteredData = data.filter(products => products.length > 0);
+        var _detail;
+        filteredData.forEach(data => {
+            _detail = JSON.stringify(data);
+        })
+        res.status(200).send(_detail);
+
+    } catch (err) {
+        console.log(err);
+    }
+}

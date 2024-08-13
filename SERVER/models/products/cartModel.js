@@ -5,6 +5,7 @@ const cartSchema = new mongoose.Schema({
     prodId: {type: String},
     addDate: {type: Date, default: Date.now()},
     Quantity: {type: String},
+    SellerId: {type: String},
 });
 const Cart = mongoose.model('Cart', cartSchema);
 module.exports = Cart;

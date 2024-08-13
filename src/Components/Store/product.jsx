@@ -9,7 +9,7 @@ export default function Product_View() {
     const { prodid } = useParams();
     const [Alert, setAlert] = useState({cartBtn: "", show: true, links: ""});
     const token = localStorage.getItem("token");
-    const [item, setItem] = useState({ itemName: "", itemType: "", itemPrice: "", discPrice: "", itemDesc: "", itemDiscount: "", itemImg: "" });
+    const [item, setItem] = useState({ itemName: "", itemType: "", itemPrice: "", discPrice: "", itemDesc: "", itemDiscount: "", itemImg: "", itemCredit: "" });
 
     const productManage = async () => {
         checkCart();
@@ -23,7 +23,8 @@ export default function Product_View() {
             discPrice: res["discPrice"],
             itemDesc: res["itemDesc"],
             itemDiscount: res["itemDiscount"],
-            itemImg: res["itemImg"]
+            itemImg: res["itemImg"],
+            itemCredit: res["itemCredit"]
         });
     }
 
@@ -58,6 +59,7 @@ export default function Product_View() {
                 <div className="details w-50 p-3">
                     <h2>{item.itemName}</h2>
                     <h3 className="my-3"><span className="percent text-danger">-{item.itemDiscount}%</span> ₹ {item.discPrice} Only</h3>
+                    <h4>Credit Points: {item.itemCredit}</h4>
                     <span className="text-secondary fw-bold">M.R.P. ₹<strike>{item.itemPrice}</strike></span>
                     <div className="description mt-3">
                         (MRP inclusive of all taxes)

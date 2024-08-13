@@ -17,15 +17,13 @@ export default function Header() {
                     link1: "/user-profile",
                     link2: "/credit-points",
                     link3: "/track-order",
-                    link4: "/purchase-history",
-                    link5: "/forgot-password"
+                    link4: "/forgot-password"
                 });
                 setNames({
                     opt1: "User Profile",
                     opt2: "Credit Points",
                     opt3: "Track Orders",
-                    opt4: "Purchase History",
-                    opt5: "Forgot Password"
+                    opt4: "Forgot Password"
                 });
             }
             if (role === "Seller") {

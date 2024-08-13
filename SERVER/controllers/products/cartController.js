@@ -19,10 +19,12 @@ exports.addToCart = async (req, res) => {
         }
 
         const id = atob(prodId);
+        const sellerId = await Product.findById(id);
+        const Seller = sellerId._SellerId
 
         try {
             const custId = req.cust.userId;
-            Cart.create({ 'custId': custId, 'prodId': id });
+            Cart.create({ 'custId': custId, 'prodId': id, 'SellerId': Seller });
             res.status(200).send({ "Status": "Success" });
         } catch (err) {
             res.status(200).send({ "Status": "user not found" });
@@ -104,10 +106,22 @@ exports.cartDetails = async (req, res) => {
                 "ItemPrice": items.productPrice,
                 "ItemImage": items.thumbnail,
                 "discPrice": Math.round(cal * 100) / 100,
-                "ItemId": items._id
+                "ItemId": items._id,
+                "itemCredit": items.creditPoint
             });
         }
         res.status(200).send(cartItemsDetails);
+    }catch(err) {
+        res.status(200).send("No user");
+    }
+}
+exports.updateQty = (req, res) => {
+    try {
+        const data = req.body;
+        data.map(async (_qty, i) => {
+            await Cart.findOneAndUpdate({'prodId': _qty[1]}, {'Quantity': _qty[0]});
+        })
+        res.status(200);
     }catch(err) {
         console.log(err);
     }

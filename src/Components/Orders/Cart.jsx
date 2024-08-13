@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Cart() {
-    const [qty, setQty] = useState(1);
+    const [qty, setQty] = useState([]);
     const [Items, setItems] = useState([]);
     const user = localStorage.getItem("token");
     const navigate = useNavigate();
@@ -13,19 +13,44 @@ export default function Cart() {
     const [Alert, setAlert] = useState({
         AlertTitle: "",
         alertMsg: "",
-        show: false
+        show: false,
+        showContent: true
     });
-    const qty_decrease = () => {
-        if (qty >= 1) setQty(1);
-        else setQty(qty - 1);
+    const qty_decrease = (pid) => {
+        setQty((prevQty) => {
+            const newQty = [...prevQty];
+            newQty[pid] = Math.max(1, newQty[pid] - 1);
+            return newQty;
+        });
     }
-    const qty_increase = () => { setQty(qty + 1); }
+    const qty_increase = (pid) => {
+        if (qty[pid] < 10) {
+            setQty((prevQty) => {
+                const newQty = [...prevQty];
+                newQty[pid] = newQty[pid] + 1;
+                return newQty;
+            });
+        } else {
+            qty[pid] = 10;
+        }
+    }
     const handleCartItems = async () => {
         const getRes = await axios.get("http://localhost:8000/product/cart-details", { params: { tokens: user } });
         const res = getRes.data;
-        setItems(res);
+        if (res === "No user") {
+            setAlert({
+                AlertTitle: "By Cart",
+                alertMsg: "Please login to add items in cart.",
+                show: true,
+                showContent: false
+            })
+        }else {
+            setItems(res);
+            setQty(new Array(res.length).fill(1));
+        }
     }
     useEffect(() => { handleCartItems() }, []);
+
     const handleRemove = async (ids) => {
         const getRes = await axios.delete("http://localhost:8000/product/remove-cartItem", { params: { itemId: btoa(ids) } });
         const res = getRes.data;
@@ -44,6 +69,20 @@ export default function Cart() {
             });
         }
     }
+    const calculateCreditPoint = () => {
+        const totalCreditPoints = Items.reduce((acc, item) => acc + item.itemCredit, 0);
+        if (totalCreditPoints >= 1000) {
+            console.log(totalCreditPoints);
+            return Math.floor(totalCreditPoints / 1000) * 100;
+        }
+        return 0;
+    };
+    const calculateTotalPurchasing = () => {
+        return Items.reduce((acc, item, index) => {
+            return Math.round((acc + (item.discPrice * qty[index])) * 100) / 100;
+        }, 0);
+    }
+    localStorage.setItem('totalAmt', calculateTotalPurchasing() - calculateCreditPoint() + 15);
 
     return (
         <section className="cart-section">
@@ -51,13 +90,13 @@ export default function Cart() {
                 <h3><i className="fa fa-shopping-cart"></i> Add To Cart ({Items.length})</h3>
             </div>
             <div className="cart-table p-3">
-                    {
-                        Alert.show && (
-                            <div className="alert alert-primary">
-                                <strong>{Alert.AlertTitle}: </strong> <span>{Alert.alertMsg}</span>
-                            </div>
-                        )
-                    }
+                {
+                    Alert.show && (
+                        <div className="alert alert-primary">
+                            <strong>{Alert.AlertTitle}: </strong> <span>{Alert.alertMsg}</span>
+                        </div>
+                    )
+                }
                 <table className="table w-100 fw-bold m-auto">
                     <thead>
                         <tr>
@@ -77,9 +116,9 @@ export default function Cart() {
                                     <td className="align-middle">₹ {Item.discPrice} <strike>₹ {Item.ItemPrice}</strike></td>
                                     <td className="align-middle">
                                         <div className="qty">
-                                            <span className="minus" onClick={qty_decrease}>—</span>
-                                            <span className="count">{qty}</span>
-                                            <span className="plus" onClick={qty_increase}>+</span>
+                                            <span className="minus" onClick={() => { qty_decrease(i) }}>—</span>
+                                            <span className="count">{qty[i]}</span>
+                                            <span className="plus" onClick={() => { qty_increase(i) }}>+</span>
                                         </div>
                                     </td>
                                     <td className="align-middle"><button onClick={() => { handleRemove(Item["ItemId"]) }} className="btn btn-danger">Remove</button></td>
@@ -89,7 +128,7 @@ export default function Cart() {
                     </tbody>
                 </table>
             </div>
-            <div className="total-billing  w-25 mt-5 p-2">
+            {Alert.showContent &&<div className="total-billing  w-25 mt-5 p-2">
                 <h3 className="ms-4">Total Billing</h3>
                 <div className="d-flex">
                     <ul className="buying-headings">
@@ -103,24 +142,33 @@ export default function Cart() {
                     </ul>
                     <ul className="pricing">
                         <hr />
-                        <li>2500.00</li>
-                        <li>25</li>
-                        <li>0pt.</li>
+                        <li>{calculateTotalPurchasing()}</li>
+                        <li>₹15</li>
+                        <li>{calculateCreditPoint()}</li>
                         <li>0%</li>
                         <hr />
-                        <li className="total">2525.00</li>
+                        <li className="total">{calculateTotalPurchasing() - calculateCreditPoint() + 15}</li>
                     </ul>
                     <hr />
                 </div>
                 <hr />
                 <div className="checkout-link text-center">
-                    <Link to="/review-details" className="btn btn-success w-100 fw-bold">Proceed To Checkout</Link>
+                    <button onClick={() => { if (saveStates(qty, Items)) window.location.href = '/review-details' }} className="btn btn-success w-100 fw-bold">Proceed To Checkout</button>
                 </div>
-            </div>
-            <div className="promo-code p-2">
-                <input type="text" name="promo-code" id="promo-code" className="w-75 mx-3 p-3" placeholder="Apply Promo Code Here.." />
-                <button type="submit" className="btn btn-success">Apply Code</button>
-            </div>
+            </div>}
         </section>
     )
+}
+const saveStates = async (qty, items) => {
+    var data = [];
+    items.map((item, i) => {
+        data.push(
+            [
+                qty[i],
+                item.ItemId
+            ]
+        );
+    })
+    await axios.put('http://localhost:8000/product/update-quantity', data);
+    return true;
 }

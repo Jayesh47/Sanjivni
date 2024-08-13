@@ -32,8 +32,7 @@ exports.userLogin = async (req, res) => {
     try {
         const { username, useremail, userpass } = req.body;
         const user = await User.findOne({ 'userEmail': useremail.toLowerCase() });
-
-        if (user.userEmail.length > 0) {
+        if (user !== null) {
             console.log("its works");
             if (user.userName.toLowerCase() === username.toLowerCase()) {
                 const verifyPass = await bcrypt.compare(userpass, user.userPassword);
@@ -47,7 +46,7 @@ exports.userLogin = async (req, res) => {
                 res.send({ "status": "username" });
             }
         } else {
-            res.send({ "status": "not exists." });
+            res.send({ "status": "not exists" });
         }
     } catch (err) {
         res.send({ Status: 500, Error: err.toString() });

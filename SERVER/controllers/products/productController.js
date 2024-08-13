@@ -13,7 +13,8 @@ exports.ProductRetrive = async (req, res) => {
                 itemPrice: prod.productPrice,
                 discPrice: Math.round(cal * 100) / 100,
                 itemDesc: prod.productDesc,
-                itemDiscount: prod.productDiscount
+                itemDiscount: prod.productDiscount,
+                itemCredit: prod.creditPoint
             });
         }
         if (!filter && !prodId) {

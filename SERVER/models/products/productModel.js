@@ -8,6 +8,7 @@ const ProductSchema = new mongoose.Schema({
     productDiscount: {type: String, default: "0"},
     productQty: {type: String, default: "0"},
     productCategory: {type: String},
+    creditPoint: {type: Number},
     _SellerId: {type:String},
     createAt: {type: Date, default: Date.now()}
 });

@@ -87,7 +87,7 @@ export default function Login() {
             }else if(response["status"] === "not exists") {
                 setAlert({
                     AlertTitle: "warning",
-                    alertMsg: "User not exists, please register first.",
+                    alertMsg: "Invalid Mail Id!",
                     show: true
                 });
             }

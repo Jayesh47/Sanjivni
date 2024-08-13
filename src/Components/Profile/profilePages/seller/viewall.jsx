@@ -56,6 +56,9 @@ export default function ViewAll() {
                             <td className="align-middle fw-bold"><button type="submit" className="btn btn-danger" onClick={() => { handleRemove(prod["Name"]) }}>Remove</button></td>
                         </tr>
                     ))}
+                    {
+                        product.length === 0 && <td><h3 className="text-danger">No Product Found.</h3></td>
+                    }
                 </tbody>
             </table>
         </section>

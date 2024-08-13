@@ -13,4 +13,5 @@ router.put('/view-products', product.ViewProducts);
 router.put('/product-update', product.updateDetails);
 router.get('/remove-product', product.RemoveProducts);
 router.get('/product-details', product.productDetails);
+router.put('/purchased-products', product.soldProducts);
 module.exports = router;

@@ -28,6 +28,7 @@ import TotalEarnings from './Components/Profile/profilePages/seller/totalEarning
 import ReviewDetails from './Components/Payment/buyerDetails';
 import Payment from './Components/Payment/payment';
 import UpdateProduct from './Components/Profile/profilePages/seller/UpdateProduct';
+import Greet from './Components/Payment/final';
 
 function App() {
   const router = createBrowserRouter([
@@ -55,6 +56,7 @@ function App() {
     { path: '/review-details', element: <><Header /><ReviewDetails /></> },
     { path: '/checkout', element: <><Header /><Payment /></> },
     { path: '/edit-product/:product', element: <><Header/><UpdateProduct/></> },
+    { path: '/success-greeting', element: <><Header/><Greet/></> },
   ]);
   return (
     <div className="App">

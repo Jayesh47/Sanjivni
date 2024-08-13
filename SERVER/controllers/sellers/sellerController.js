@@ -31,9 +31,9 @@ exports.SellerLogin = async (req, res) => {
         const { sellername, selleremail, sellerpass } = req.body;
 
         const userDetails = await Seller.findOne({ "SellerEmail": selleremail.toLowerCase() });
-        if (userDetails) {
+        if (userDetails !== null) {
             const checkPass = await bcrypt.compare(sellerpass, userDetails.SellerPassword);
-            if (sellername.toLowerCase() !== userDetails.SellerName) {
+            if (sellername.toLowerCase() !== userDetails.SellerName.toLowerCase()) {
                 res.status(200).send({"Status": "invalid name"});
             }
             if (checkPass === true) {
