@@ -1,7 +1,5 @@
 const cart = require('../../models/products/cartModel');
-const product = require('../../models/products/productModel');
 const Pay = require('../../models/products/upiModel');
-const buy = require('../../models/products/buyHistory');
 
 exports.productPurchased = async (req, res) => {
     try {

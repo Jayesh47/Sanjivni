@@ -104,7 +104,7 @@ export default function Profile() {
                     <strong>{Alert.AlertTitle}: </strong><span>{Alert.alertMsg}</span>
                 </div>
             }
-            <h1 className="text-center mt-3">Welcome {retrieve.name}</h1>
+            <h3 className="text-center mt-3">WELCOME {retrieve.name}</h3>
             <div className="profile-layout w-75 m-auto d-flex mt-5">
                 <div className="profile-img w-25">
                     <img src={"http://localhost:8000/upload/" + retrieve["imgs"]} alt="" width="200px" height="180px" />

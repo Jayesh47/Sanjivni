@@ -80,7 +80,7 @@ export default function SellerProfile() {
 
     return (
         <section className="seller-profile">
-            <h1 className="text-center my-4 text-capitalize">{details.name} Dashboard</h1>
+            <h2 className="text-center my-4 text-capitalize">{details.name} DASHBOARD</h2>
             {
                 Alert.show && (
                     <div className="alert alert-success">

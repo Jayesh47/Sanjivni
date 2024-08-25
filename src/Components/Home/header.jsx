@@ -69,8 +69,8 @@ export default function Header() {
                 <li className="nav-links"><Link to="/about"><i className="fa fa-address-card"></i> About us</Link></li>
                 {
                     auth && (
-                        <span className="d-flex align-items-center">
-                            <li className="nav-links dropdown">
+                        <>
+                            <li className="nav-links dropdown ms-4">
                                 <Link className="nav-link dropdown-toggle" to={links.link1} role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className="fa fa-user"></i> {Names.opt1}
                                 </Link>
@@ -82,15 +82,15 @@ export default function Header() {
                                     <li className="dropdown-links"><Link to={links.link5} className="dropdown-item text-light">{Names.opt5}</Link></li>
                                 </ul>
                             </li>
-                            <li className="nav-links"><Link to="/logout"><i className="fa fa-sign-out-alt"></i> Logout</Link></li>
-                        </span>
+                            <li className="nav-links ms-4"><Link to="/logout"><i className="fa fa-sign-out-alt"></i> Logout</Link></li>
+                        </>
                     )
                 }
                 {
-                    !auth && (<span className="d-flex">
+                    !auth && (<>
                         <li className="nav-links"><Link to="/login"><i className="fa fa-sign-in-alt"></i> Login</Link></li>
-                        <li className="nav-links"><Link to="/become-seller"><i className="fa fa-users"></i> Become a Seller</Link></li>
-                    </span>
+                        <li className="nav-links w-25"><Link to="/become-seller"><i className="fa fa-users"></i> Become a Seller</Link></li>
+                    </>
                     )
                 }
             </ul>

@@ -162,20 +162,13 @@ const findProduct = async (productId) => {
     return await Product.findById(productId.toString());
 }
 
-exports.soldProducts = async (req, res) => {
+exports.soldProducts = [
+    VerifyToken, 
+    async (req, res) => {
     try {
-        let { _seller } = req.body;
-        const _sellerId = atob(atob(_seller));
+        let _seller = req.user["userId"];
+        const _sellerId = _seller;
         const _buying = await pay.find();
-        var product = [];
-        // _buying.forEach(async data => {
-        //     for (let i=0; i<data.productId.length; i++) {
-        //         if (_sellerId === data.productId[i]["Seller"]) {
-        //             const item = await Product.findById(data.productId[i]["product"].toString());
-        //             product.push(item.productTitle);
-        //         }
-        //     }
-        // })
         const data = await Promise.all(_buying.map(async _pays => {
             const products = await Promise.all(_pays.productId.map(async prod => {
                 if (_sellerId === prod["Seller"]) {
@@ -184,7 +177,8 @@ exports.soldProducts = async (req, res) => {
                         item_img: item.thumbnail,
                         item_name: item.productTitle,
                         item_qty: prod["quantity"],
-                        item_purchase_time: _pays["timeStamp"]
+                        item_purchase_time: _pays["timeStamp"],
+                        item_price: item.productPrice
                     };
                 }
             }));
@@ -192,13 +186,10 @@ exports.soldProducts = async (req, res) => {
         }));
         
         const filteredData = data.filter(products => products.length > 0);
-        var _detail;
-        filteredData.forEach(data => {
-            _detail = JSON.stringify(data);
-        })
-        res.status(200).send(_detail);
+
+        res.status(200).send({items: JSON.stringify(filteredData)});
 
     } catch (err) {
         console.log(err);
     }
-}
+}]

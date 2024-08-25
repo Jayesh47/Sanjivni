@@ -77,7 +77,7 @@ export default function Product_View() {
                     </div>
                 </div>
             </div>
-            <UserComment />
+            {Alert.show && <UserComment product={prodid} />}
         </section>
     )
 }

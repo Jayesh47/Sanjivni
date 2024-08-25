@@ -3,6 +3,7 @@ const router = express.Router();
 const Seller = require('../controllers/sellers/sellerController');
 const Record = require('../controllers/sellers/sellerRecord');
 const product = require('../controllers/sellers/productStore');
+const withdawal = require('../controllers/sellers/withdrawal');
 
 router.put('/seller-register', Seller.SellerRegister);
 router.post('/seller-login', Seller.SellerLogin);
@@ -14,4 +15,6 @@ router.put('/product-update', product.updateDetails);
 router.get('/remove-product', product.RemoveProducts);
 router.get('/product-details', product.productDetails);
 router.put('/purchased-products', product.soldProducts);
+router.put('/withdawal-earnings', withdawal.withdrawalEarnings);
+router.post('/transfer-earnings', withdawal.transferEarnings);
 module.exports = router;

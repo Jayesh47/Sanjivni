@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 
 export default function Selling() {
     const [getHistory, setHistory] = useState([]);
     const handleHistory = async () => {
-        const seller = jwtDecode(localStorage.getItem('token'))["userId"];
-        const api = await axios.put('http://localhost:8000/seller/purchased-products', { _seller: btoa(btoa(seller)) });
-        const data = api.data;
-        console.log(data);
+        const seller = localStorage.getItem('token');
+        const api = await axios.put('http://localhost:8000/seller/purchased-products', {token: seller});
+        let data = api.data;
+        data = JSON.parse(data["items"]);
+        for (let i = 0; i < data.length; i++) {
+            setHistory(data);
+        }
     }
     useEffect(() => { handleHistory() }, []);
 
@@ -25,12 +27,18 @@ export default function Selling() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="align-middle"><img src={"http://localhost:8000/productUpload/"} alt="" width="200px" height="160px" /></td>
-                        <td className="align-middle"></td>
-                        <td className="align-middle"></td>
-                        <td className="align-middle"></td>
-                    </tr>
+                    {
+                        getHistory.map(_item => (
+                            _item.map((_product, i) => (
+                                <tr key={i}>
+                                    <td className="align-middle"><img src={"http://localhost:8000/productUpload/" + _product["item_img"]} alt="" width="200px" height="160px" /></td>
+                                    <td className="align-middle">{_product["item_name"]}</td>
+                                    <td className="align-middle">{_product["item_qty"]}</td>
+                                    <td className="align-middle">{_product["item_purchase_time"]}</td>
+                                </tr>
+                            ))
+                        ))
+                    }
                 </tbody>
             </table>
         </section>

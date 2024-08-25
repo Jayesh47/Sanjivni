@@ -60,3 +60,9 @@
         color: black;
     }
 }
+.write-comment {
+    textarea {
+        border: none;
+        border-bottom: 2px solid rgb(34, 34, 34);
+    }
+}
