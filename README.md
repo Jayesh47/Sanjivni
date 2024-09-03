@@ -1,11 +1,11 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
-plantation is most important part of our life, So this is my final year project which also supports to this line,
-this project is on nursery & plantation,
-its designed and developed in MERN Stack development. MERN Stack is MVC (Model View Controller) based framework.
-In this site seller can sell or buyer can buy plantation and nursery products easily also in this I give credit system for customers, 
-which motivates to customer for more purchasing of products.
+# plantation is most important part of our life,
+# So this is my final year project which also supports to this line, so this project is on nursery & plantation,
+# its designed and developed in MERN Stack development. MERN Stack is MVC (Model View Controller) based framework.
+# In this site seller can sell or buyer can buy plantation and nursery products easily also in this I give credit system for customers, 
+# which motivates to customer for more purchasing of products.
 
 ## Available Scripts
 
