@@ -37,7 +37,7 @@ exports.SellerLogin = async (req, res) => {
                 res.status(200).send({"Status": "invalid name"});
             }
             if (checkPass === true) {
-                const token = jwt.sign({ "userId": userDetails._id, "roles": userDetails.SellerRole }, secretKey, { expiresIn: '1h' });
+                const token = jwt.sign({ "userId": userDetails._id, "roles": userDetails.SellerRole }, secretKey, { expiresIn: '7d' });
                 res.status(200).send({ "Status": "Success", "token": token });
             } else {
                 res.status(200).send({ "Status": "incorrect password" });
