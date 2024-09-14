@@ -1,7 +1,7 @@
 const User = require('../../models/users/userModel');
 const Seller = require('../../models/sellers/sellerModel');
 const jwt = require('jsonwebtoken');
-const secretKey = "XQs2i6C3fk5dsDZ";
+const secretKey = process.env.USER_SECRET_KEY;
 
 const VerifyToken = (token) => {
     const userId = [];

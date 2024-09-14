@@ -1,5 +1,5 @@
 const Withdraw = require('../../models/sellers/withdrawalAmt');
-const secretKey = "6BBSjfFBjnJuUzu";
+const secretKey = process.env.SELLER_SECRET_KEY;
 const jwt = require('jsonwebtoken');
 
 const VerifyToken = (token) => {

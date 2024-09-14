@@ -2,7 +2,7 @@ const Product = require('../../models/products/productModel');
 const pay = require('../../models/products/upiModel');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
-const secretKey = "6BBSjfFBjnJuUzu";
+const secretKey = process.env.SELLER_SECRET_KEY;
 
 
 const storage = multer.diskStorage({
