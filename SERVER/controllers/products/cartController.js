@@ -1,7 +1,7 @@
 const Cart = require('../../models/products/cartModel');
 const Product = require('../../models/products/productModel');
 const jwt = require('jsonwebtoken');
-const secretKey = "XQs2i6C3fk5dsDZ";
+const secretKey = process.env.USER_SECRET_KEY;
 
 exports.addToCart = async (req, res) => {
     try {
