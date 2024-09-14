@@ -1,7 +1,7 @@
 const Seller = require('../../models/sellers/sellerModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const secretKey = "6BBSjfFBjnJuUzu";
+const secretKey = process.env.SELLER_SECRET_KEY;
 
 exports.SellerRegister = async (req, res) => {
     try {

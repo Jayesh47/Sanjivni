@@ -37,7 +37,7 @@ exports.userLogin = async (req, res) => {
             if (user.userName.toLowerCase() === username.toLowerCase()) {
                 const verifyPass = await bcrypt.compare(userpass, user.userPassword);
                 if (verifyPass === true | verifyPass === 1) {
-                    const token = jwt.sign({userId: user["_id"], roles: user.userRoles}, "XQs2i6C3fk5dsDZ", {expiresIn: '7d'});
+                    const token = jwt.sign({userId: user["_id"], roles: user.userRoles}, process.env.USER_SECRET_KEY, {expiresIn: '7d'});
                     res.send({ "status": "success", "user": token });
                 } else {
                     res.send({ "status": "incorrect" });

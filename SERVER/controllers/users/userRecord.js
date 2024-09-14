@@ -3,7 +3,7 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const secret_key = "XQs2i6C3fk5dsDZ";
+const secret_key = process.env.USER_SECRET_KEY;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

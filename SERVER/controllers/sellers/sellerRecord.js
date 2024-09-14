@@ -1,6 +1,6 @@
 const Seller = require('../../models/sellers/sellerModel');
 const jwt = require('jsonwebtoken');
-const secretKey = "6BBSjfFBjnJuUzu";
+const secretKey = process.env.SELLER_SECRET_KEY;
 const multer = require('multer');
 
 const storage = multer.diskStorage({
