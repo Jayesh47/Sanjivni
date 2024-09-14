@@ -4,6 +4,7 @@ const customer = require('../controllers/users/userController');
 const UserRecords = require('../controllers/users/userRecord');
 const delivery = require('../controllers/users/deliveryReview');
 const comment = require('../controllers/users/userComments');
+const track = require('../controllers/users/trackOrders');
 
 router.post('/user-login', customer.userLogin);
 router.put('/user-register', customer.Register);
@@ -14,5 +15,6 @@ router.get('/review-details', delivery.retrieveInfo);
 router.put('/updateBuyerReview', delivery.updateInfo); 
 router.put('/user-comments', comment.handleComments);
 router.get('/retrieve-comments', comment.sendComments);
+router.post('/track-order', track.TrackOrder);
 
 module.exports = router; 

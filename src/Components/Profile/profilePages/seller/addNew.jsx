@@ -1,5 +1,4 @@
 import React, { useReducer, useState } from "react";
-import product_img from '../../../../static/plant.jpg';
 import "../../admin.css";
 import axios from "axios";
 

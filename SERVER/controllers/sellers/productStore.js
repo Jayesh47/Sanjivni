@@ -54,7 +54,7 @@ exports.AddProduct = [
                 if (_thumbnail) product["thumbnail"] = _thumbnail;
                 product["_SellerId"] = _sellerId;
                 const cal = price - (parseFloat(price) * parseFloat(discount)) / 100;
-                const disPrice = Math.round(cal * 100) / 100;
+                const disPrice = Math.ceil(cal * 100) / 100;
                 product["creditPoint"] = disPrice / 50;
 
                 const add = await Product.create(product);
@@ -135,6 +135,7 @@ exports.updateDetails = [
 
             const data = {};
             if (product["item-title"] !== undefined) data["productTitle"] = product["item-title"]; else data["productTitle"] = old_data.productTitle;
+            if (product["item-price"] !== undefined) data["productPrice"] = product["item-price"]; else data["productPrice"] = old_data.productPrice;
             if (product["item-discount"] !== undefined) data["productDiscount"] = product["item-discount"]; else data["productDiscount"] = old_data.productDiscount;
             if (product["item-qty"] !== undefined) data["productQty"] = product["item-qty"]; else data["productQty"] = old_data.productQty;
             if (product["item-description"] !== undefined) data["productDesc"] = (product["item-description"]); else data["productDesc"] = old_data.productDesc

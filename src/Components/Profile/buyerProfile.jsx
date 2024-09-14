@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import './admin.css';
 import axios from "axios";
-import { text } from "body-parser";
 
 const formReducer = (state, event) => {
     return ({

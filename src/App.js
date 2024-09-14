@@ -29,7 +29,6 @@ import ReviewDetails from './Components/Payment/buyerDetails';
 import Payment from './Components/Payment/payment';
 import UpdateProduct from './Components/Profile/profilePages/seller/UpdateProduct';
 import Greet from './Components/Payment/final';
-import Withdarwls from './Components/Profile/profilePages/seller/withdrawl';
 
 function App() {
   const router = createBrowserRouter([

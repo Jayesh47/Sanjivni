@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Contact from "./contact";
 import img1 from '../../static/garden.jpg';
 import img2 from '../../static/plant1.jpeg';
 import img3 from '../../static/seeds.jpeg';
@@ -150,7 +149,6 @@ export default function HomePage() {
                     }
                 </div>
             </div>
-            <Contact />
         </section>
     )
 }

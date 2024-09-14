@@ -71,7 +71,6 @@ export default function Product_View() {
                         </ul>
                     </div>
                     <div className="buy-btns">
-                        {Alert.show && <Link className="btn btn-success ms-4">Buy Now</Link>}
                         {Alert.show && <button onClick={handleCart} className="btn btn-danger mx-3">{Alert.cartBtn}</button>}
                         {!Alert.show && <Link to={Alert.links} className="btn btn-danger mx-3" >{Alert.cartBtn}</Link>}
                     </div>

@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer, useState } from "react";
-import icon from '../../static/tree1.jpg';
 import './admin.css';
 import { Link } from "react-router-dom";
 import axios from 'axios';
